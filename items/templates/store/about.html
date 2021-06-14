@@ -1,109 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>About</title>
-        <!--ICON FOR TABS-->
-        <link rel="icon" type="image/x-icon" href="assets/icon.ico" />
-        <!--BOOTSTRAP CSS-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <!--MASTER CSS FILE-->
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <!--Font CSS-->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Play">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    </head>
-
-
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand mr-3" href="#"><img src="/assets/icon.ico" height="34">  <b>Com</b> Shop </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                    <div class="navbar-nav">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Components/Parts</a>
-                            <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="CPU.html">CPU</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="GPU.html">GPU</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="mobo.html">Motherboards</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="memory.html">Memory</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Peripherals</a>
-                            <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Monitor</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Mouse</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Keyboard</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Headset</a>
-                            </div>
-                        </div>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                    </div>
-                    <form class="navbar-form form-inline">
-                        <div class="input-group search-box">								
-                            <input type="text" id="search" class="form-control" placeholder="Search product">
-                            <span class="input-group-addon" href="#"><i class="material-icons">&#xE8B6;</i></span>
-                        </div>
-                    </form>
-                    <div class="navbar-nav ml-auto">
-                        
-                        <a href="cart.html" class="nav-item nav-link cart"> <img src= "/assets/cart4.svg" height="20"><span class="badge">1</span></a>
-                        <a href="login.html" class="nav-item nav-link login">Log In</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-    <div class="jumbotron text-center">
-        <h1 class="jumbotron-heading">GJF Computers</h1>
-        <p class="lead text-muted">"Pick your computer parts now"</p>
-        <br>
-        <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
-        </p>
-    </div>
-
-    <script>
-        $(document).ready(function () {
-            $('.mdb-select').materialSelect();
-            $('.select-wrapper.md-form.md-outline input.select-dropdown').bind('focus blur', function () {
-                $(this).closest('.select-outline').find('label').toggleClass('active');
-                $(this).closest('.select-outline').find('.caret').toggleClass('active');
-            });
-        });
-    </script>
-    <!-- Bootstrap JS-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <!--MASTER JS FILE-->
-    <script src="js/script.js"></script>
-</body>
-
-</html>
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="bg-light p-5 rounded-lg m-3 text-center">
+    <h1 class="jumbotron-heading">GJF Computers</h1>
+    <p class="lead text-muted">"Pick your computer parts now"</p>
+    <br>
+    <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+        nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.
+    </p>
+</div>
+{% endblock %}

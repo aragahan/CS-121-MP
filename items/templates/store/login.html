@@ -2,20 +2,30 @@
 {% load static %}
 {% block content %}
 
-        <form class="form-signin">
-            <img class="mb-4" src="{% static 'assets/icon.ico' %}" alt="" width="72" height="72">
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-            <div class="checkbox mb-3">
-              <label>
-                <input type="checkbox" value="remember-me"> Remember me
-              </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <a href="register.html"><button class="btn btn-lg btn-primary btn-block">No account? Register here</button></a>
-        </form>
+<main class="form-signin">
+  <form class="text-center ">
+    <img class="mb-4" src="{% static 'assets/icon.ico' %}" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating ">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput" class="text-dark">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword" class="text-dark">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <hr>
+  </form>
+  <button class="w-100 btn btn-lg btn-primary" href="{% url 'register' %}">Register</button>
+  <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+</main>
 
 {% endblock content %}
