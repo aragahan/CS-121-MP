@@ -129,6 +129,20 @@ def cpu(request):
     context = {'products': products, 'total':total}
     return render(request, 'store/products/components/cpu.html', context)
 
+def gpu(request):
+    if request.user.is_authenticated:
+        customer=request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        total = order.get_quantity_total
+    else:
+        items=[]
+        order = {'get_cart_total':0, 'get_quantity_total':0}
+        total = order['get_quantity_total']
+    products = Product.objects.filter(category=2)
+    context = {'products': products, 'total':total}
+    return render(request, 'store/products/components/gpu.html', context)
+
 def mobo(request):
     if request.user.is_authenticated:
         customer=request.user.customer
@@ -139,7 +153,7 @@ def mobo(request):
         items=[]
         order = {'get_cart_total':0, 'get_quantity_total':0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category__startswith='mobo')
+    products = Product.objects.filter(category=3)
     
     context = {'products': products,'total':total}
     return render(request, 'store/products/components/mobo.html', context)
@@ -154,11 +168,12 @@ def memory(request):
         items=[]
         order = {'get_cart_total':0, 'get_quantity_total':0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category__startswith='memory')
+    products = Product.objects.filter(category=4)
     context = {'products': products,'total':total}
     return render(request, 'store/products/components/memory.html', context)
 
-def gpu(request):
+
+def case(request):
     if request.user.is_authenticated:
         customer=request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -168,7 +183,89 @@ def gpu(request):
         items=[]
         order = {'get_cart_total':0, 'get_quantity_total':0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category__startswith='gpu')
+    products = Product.objects.filter(category=5)
+    context = {'products': products, 'total':total}
+    return render(request, 'store/products/components/gpu.html', context)
+def psu(request):
+    if request.user.is_authenticated:
+        customer=request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        total = order.get_quantity_total
+    else:
+        items=[]
+        order = {'get_cart_total':0, 'get_quantity_total':0}
+        total = order['get_quantity_total']
+    products = Product.objects.filter(category=6)
+    context = {'products': products, 'total':total}
+    return render(request, 'store/products/components/gpu.html', context)
+def caseacc(request):
+    if request.user.is_authenticated:
+        customer=request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        total = order.get_quantity_total
+    else:
+        items=[]
+        order = {'get_cart_total':0, 'get_quantity_total':0}
+        total = order['get_quantity_total']
+    products = Product.objects.filter(category=7)
+    context = {'products': products, 'total':total}
+    return render(request, 'store/products/components/gpu.html', context)
+
+def headset(request):
+    if request.user.is_authenticated:
+        customer=request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        total = order.get_quantity_total
+    else:
+        items=[]
+        order = {'get_cart_total':0, 'get_quantity_total':0}
+        total = order['get_quantity_total']
+    products = Product.objects.filter(category=8)
+    context = {'products': products, 'total':total}
+    return render(request, 'store/products/components/gpu.html', context)
+
+def keyboard(request):
+    if request.user.is_authenticated:
+        customer=request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        total = order.get_quantity_total
+    else:
+        items=[]
+        order = {'get_cart_total':0, 'get_quantity_total':0}
+        total = order['get_quantity_total']
+    products = Product.objects.filter(category=9)
+    context = {'products': products, 'total':total}
+    return render(request, 'store/products/components/gpu.html', context)
+
+def monitor(request):
+    if request.user.is_authenticated:
+        customer=request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        total = order.get_quantity_total
+    else:
+        items=[]
+        order = {'get_cart_total':0, 'get_quantity_total':0}
+        total = order['get_quantity_total']
+    products = Product.objects.filter(category=10)
+    context = {'products': products, 'total':total}
+    return render(request, 'store/products/components/gpu.html', context)
+
+def mouse(request):
+    if request.user.is_authenticated:
+        customer=request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        total = order.get_quantity_total
+    else:
+        items=[]
+        order = {'get_cart_total':0, 'get_quantity_total':0}
+        total = order['get_quantity_total']
+    products = Product.objects.filter(category=11)
     context = {'products': products, 'total':total}
     return render(request, 'store/products/components/gpu.html', context)
 

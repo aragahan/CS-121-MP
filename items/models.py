@@ -20,6 +20,13 @@ class Category(models.Model):
         ('GPU','GPU'),
         ('Mobo','Mobo'),
         ('Memory','Memory'),
+        ('Case','Case'),
+        ('PSU','PSU'),
+        ('CaseAcc','CaseAcc'),
+        ('Headset','Headset'),
+        ('Keyboard','Keyboard'),
+        ('Monitor','Monitor'),
+        ('Mouse','Mouse'),
     )
     name = models.CharField(max_length=200,null=True, choices=CATEGORY)
 
