@@ -80,16 +80,23 @@ def about(request):
 
 def checkout(request):
     if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(
-            customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        total = order.get_quantity_total
+        firstname = request.POST.get('firstname')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        address1 = request.POST.get('address1')
+        address2 = request.POST.get('address2')
+        country = request.POST.get('country')
+        city = request.POST.get('city')
+        postcode = request.POST.get('postcode')
+
+        if (forms.selected("credit")): #only for credit card option
+            cardname = request.POST.get('card-name')
+            cardno = request.POST.get('card-no')
+            expiry = request.POST.get('expiry')
+            secno = request.POST.get('sec-no')
     else:
-        items = []
-        order = {'get_cart_total': 0, 'get_quantity_total': 0}
-        total = order['get_quantity_total']
-    context = {'total': total}
+        return redirect('login')
+    context = {}
     return render(request, 'store/checkout.html', context)
 
 
