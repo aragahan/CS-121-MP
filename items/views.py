@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.core.mail import send_mail
 from .models import *
 from .forms import CreateUserForm
 from .decorators import unauthenticated_user
@@ -129,6 +131,12 @@ def registerPage(request):
                 user=user,
                 name=form.cleaned_data.get('username'),
             )
+
+            subject = 'Account creation success.'
+            message = f'Hi {user.username}, you have successfully registered to Comshop.'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user.email, ]
+            send_mail(subject, message, email_from, recipient_list)
 
             messages.success(request, 'Account creation success.')
 
