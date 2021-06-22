@@ -3,18 +3,23 @@
 {% block content %}
 
 <main class="form-signin">
-  <form class="text-center ">
+  <form class="text-center " method="POST" action="">
+    {% csrf_token %}
     <img class="mb-4" src="{% static 'assets/icon.ico' %}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating ">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput" class="text-dark">Email address</label>
+      <input type="username" class="form-control" name="username" placeholder="Username">
+      <label for="floatingInput" class="text-dark">Username</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" class="form-control" name="password" placeholder="Password">
       <label for="floatingPassword" class="text-dark">Password</label>
     </div>
+
+    {% for message in messages %}
+    <p id="messages">{{message}}</p>
+    {% endfor %}
 
     <div class="checkbox mb-3">
       <label>
@@ -24,7 +29,7 @@
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
     <hr>
   </form>
-  <button class="w-100 btn btn-lg btn-primary" href="{% url 'register' %}">Register</button>
+  <a href="{% url 'register' %}"><button class="w-100 btn btn-lg btn-primary">Register</button></a>
   <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
 </main>
 
