@@ -1,0 +1,30 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-4 container-fluid
+     bg-default">
+
+    <h4 class="my-4">
+        Delivery Process
+    </h4>
+    <hr class="mb-4">
+
+    <body>
+        <h4>Your order will be processed only after your order has been confirmed through email.
+            <br />
+            Due to Quarantine Restrictions, please expect your delivery to arrive within 2 months after payment
+            confirmation.
+            <br />
+            Delivery takes place only between Monday and Friday from 8:00am - 6:00pm.
+        </h4>
+
+    </body>
+    <hr class="mb-4">
+
+    <a href="{% url 'purchase_summary' %}">
+        <button class="btn btn-primary bt-lg btn-block" type="submit">Next</button>
+    </a>
+
+</div>
+
+{% endblock content %}

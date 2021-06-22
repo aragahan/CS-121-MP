@@ -1,0 +1,79 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<section class="bg-light p-5 rounded-lg m-3 text-center">
+  <div class="container-fluid">
+    <h1 class="jumbotron-heading">Build your PC</h1>
+    <p class="lead text-muted mb-0">Pick the parts you want.</p>
+  </div>
+</section>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Component/Peripheral</th>
+        <th scope="col">Item</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--Components-->
+      <tr>
+        <td>CPU</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'cpu' %}">Pick a CPU </a></td>
+      </tr>
+      <tr>
+        <td>CPU Cooler</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'cooler' %}">Pick a CPU Cooler </a></td>
+      </tr>
+      <tr>
+        <td>Motherboard</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'mobo' %}">Pick a Motherboard </a></td>
+      </tr>
+      <tr>
+        <td>Memory</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'memory' %}">Pick Memory </a></td>
+      </tr>
+      <tr>
+        <td>Storage</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'storage' %}">Pick Storage</a></td>
+      </tr>
+      <tr>
+        <td>GPU</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'gpu' %}">Pick a GPU </a></td>
+      </tr>
+      <tr>
+        <td>Chassis</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'case' %}">Pick a Chassis </a></td>
+      </tr>
+      <tr>
+        <td>PSU</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'psu' %}">Pick a PSU </a></td>
+      </tr>
+      <!--Peripherals-->
+      <tr>
+        <td>Monitor</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'monitor' %}">Pick a Monitor </a></td>
+      </tr>
+      <tr>
+        <td>Keyboard</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'keyboard' %}">Pick a Keyboard</a></td>
+      </tr>
+      <tr>
+        <td>Mouse</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'mouse' %}">Pick a Mouse </a></td>
+      </tr>
+      <tr>
+        <td>Headset</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'headset' %}">Pick a Headset </a></td>
+      </tr>
+      <tr>
+        <td>Case Accessories</td>
+        <td><a class="btn btn-success btn-sm ml-3" href="{% url 'caseacc' %}">Pick Case Accessories</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock content %}

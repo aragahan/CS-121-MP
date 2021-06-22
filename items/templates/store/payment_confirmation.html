@@ -1,0 +1,16 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-4 container-fluid
+     bg-default">
+
+    <h4>Thank You!</h4>
+
+    <body>
+        Thank you for shopping!
+        <br />
+        <a href="{% url 'about' %}"><button>Back to Home</button></a>
+    </body>
+</div>
+
+{% endblock content %}

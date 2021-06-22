@@ -1,0 +1,92 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="px-4 px-lg-0">
+    <!-- For demo purpose -->
+    <div class="container text-white py-5 text-center">
+        <h1 class="display-4">Your Shopping Cart</h1>
+    </div>
+    <!-- End -->
+
+    <div class="pb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+                    <a class = "btn btn-outline-dark" href="{% url 'home' %}" >&#x2190; Continue Shopping</a>
+                    <!-- Shopping cart table -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="p-2 px-3 text-uppercase">Product</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">Price</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">Quantity</div>
+
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">Remove</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                <tr>
+                                    <th scope="row" class="border-0">
+                                        <div class="p-2">
+                                            <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-1_zrifhn.jpg"
+                                                alt="" width="70" class="img-fluid rounded shadow-sm">
+                                            <div class="ml-3 d-inline-block align-middle">
+                                                <h5 class="mb-0"> <a href="#"
+                                                        class="text-dark d-inline-block align-middle">{{item.product.name}}</a></h5><span
+                                                    class="text-muted font-weight-normal font-italic d-block">Category:
+                                                    {{item.product.category}}</span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td class="border-0 align-middle"><strong>PHP {{item.get_total|floatformat:2}}</strong></td>
+                                    <td class="border-0 align-middle"> <button class="btn btn-dark">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="20" fill="currentColor" class="bi bi-arrow-left chg-quantity update-cart" viewBox="0 0 15 20" data-action="remove" data-product="{{item.product.id}}"  style="width: 15px; height: 20px; text-align: center;">
+                                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                                          </svg>
+                                    </button>
+                                        
+                                    <strong> {{item.quantity}}</strong> <button class="btn btn-dark">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="20" fill="currentColor" class="bi bi-arrow-right chg-quantity update-cart" viewBox="0 0 15 20" data-action="add" data-product="{{item.product.id}}"  style="width: 15px; height: 20px; text-align: center;">
+                                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                          </svg>
+                                    </button></td>
+                                    <td class="border-0 align-middle"><button class="btn btn-danger update-cart" data-action="removeall" data-product="{{item.product.id}}">
+                                        Remove
+                                    </button></td></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- End -->
+                </div>
+            </div>
+
+            <div class="row py-5 p-4 bg-white rounded shadow-sm">
+                <div class="col-lg-6">
+                    <div class="p-4">
+                        <ul class="list-unstyled mb-4">
+                            <li class="d-flex justify-content-between py-3 border-bottom"><strong
+                                    class="text-dark">Total</strong>
+                                <h5 class="text-dark">{{order.get_cart_total}}</h5>
+                            </li>
+                        </ul><a href="{% url 'checkout' %}" class="btn btn-success">Proceed to
+                            checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
