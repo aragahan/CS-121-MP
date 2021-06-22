@@ -166,8 +166,8 @@ def cpu(request):
         items = []
         order = {'get_cart_total': 0, 'get_quantity_total': 0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category=1)
-    context = {'products': products, 'total': total}
+    cpus = CPU.objects.filter()
+    context = {'cpus': cpus, 'total': total}
     return render(request, 'store/products/components/cpu.html', context)
 
 

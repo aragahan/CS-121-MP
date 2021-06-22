@@ -41,11 +41,66 @@ class Product(models.Model):
     price = models.FloatField()
     brand = models.CharField(max_length=200, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    graphics = models.CharField(max_length=200, null=True)
     image = models.ImageField(null=True)
 
     def __str__(self):
         return self.name
+
+
+class CPU(Product):
+    cores = models.FloatField()
+    clockspeed = models.FloatField()
+    graphics = models.CharField(max_length=200, null=True)
+
+
+class GPU(Product):
+    chipset = models.CharField(max_length=200, null=True)
+    vram = models.FloatField()
+    clockspeed = models.FloatField()
+
+
+class Motherboard(Product):
+    socket = models.CharField(max_length=200, null=True)
+    formfactor = models.CharField(max_length=200, null=True)
+
+
+class Memory(Product):
+    memorytype = models.CharField(max_length=200, null=True)
+    speed = models.FloatField()
+    capacity = models.FloatField()
+
+
+class Storage(Product):
+    storagetype = models.CharField(max_length=200, null=True)
+    capacity = models.FloatField()
+
+
+class PSU(Product):
+    capacity = models.FloatField()
+
+
+class Monitor(Product):
+    resolution = models.CharField(max_length=200, null=True)
+    refreshrate = models.FloatField()
+
+
+class Mouse(Product):
+    dpi = models.FloatField()
+    wireless = models.BooleanField()
+
+
+class Keyboard(Product):
+    switchtype = models.CharField(max_length=200, null=True)
+    switch = models.CharField(max_length=200, null=True)
+
+
+class Headset(Product):
+    wireless = models.BooleanField()
+
+
+class CaseAcc(Product):
+    rpm = models.FloatField()
+    size = models.FloatField()
 
 
 class Rating(models.Model):

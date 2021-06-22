@@ -28,11 +28,11 @@
                         All
                     </label>
                 </div>
-                {% for product in products %}
+                {% for cpu in cpus %}
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="allbrands" id={{product.brand}} value="option1">
-                    <label class="form-check-label" for={{product.brand}}>
-                        {{product.brand}}
+                    <input class="form-check-input" type="radio" name="allbrands" id={{cpu.brand}} value="option1">
+                    <label class="form-check-label" for={{cpu.brand}}>
+                        {{cpu.brand}}
                     </label>
                 </div>
                 {% endfor %}
@@ -51,12 +51,12 @@
                 </thead>
                 <tbody>
                     <!--Components-->
-                    {% for product in products %}
+                    {% for cpu in cpus %}
                     <tr>
-                        <td><img class="thumbnail" src="{{product.image.url}}" height="50"><a
-                                href="{% url 'product' product.id %}" class="link-secondary"> {{product.name}}</a></td>
-                        <td>PHP {{product.price|floatformat:2}}</td>
-                        <td><button data-product={{product.id}} data-action="add"
+                        <td><img class="thumbnail" src="{{cpu.image.url}}" height="50"><a
+                                href="{% url 'product' cpu.id %}" class="link-secondary"> {{cpu.name}}</a></td>
+                        <td>PHP {{cpu.price|floatformat:2}}</td>
+                        <td><button data-product={{cpu.id}} data-action="add"
                                 class="btn btn-success btn-sm ml-3 update-cart">Add-to-Cart</button></td>
                     </tr>
                     {% endfor %}
