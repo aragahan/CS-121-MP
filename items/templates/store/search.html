@@ -1,0 +1,31 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    
+    
+    {% if name %}
+    <h1 class= "text-center">You searched for '{{name}}'</h1>
+    <div class="col">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+            <tr>
+                <td ><img class="thumbnail" src="{{product.image.url}}"  height="50"><a href="{% url 'product' product.id %}" class="link-secondary"> {{product.name}}</a></td>
+                <td>PHP {{product.price|floatformat:2}}</td>
+                <td><button data-product = {{product.id}} data-action= "add" class="btn btn-success btn-sm ml-3 update-cart">Add-to-Cart</button></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %} 
+    <h1 class="text-center"> Search for a product...</h1>
+    {% endif %}
+    
+{% endblock content %}
