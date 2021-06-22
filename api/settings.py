@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 import dj_database_url
 import django_heroku
-django_heroku.settings(locals())
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -133,7 +133,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 prod_db = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
+
 
 MEDIA_URL = '/images/'
 
@@ -142,5 +142,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+django_heroku.settings(locals())
 # Auth
