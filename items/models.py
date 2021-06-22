@@ -16,31 +16,10 @@ class Customer(models.Model):
         return self.name
 
 
-class Category(models.Model):
-    CATEGORY = (
-        ('CPU', 'CPU'),
-        ('GPU', 'GPU'),
-        ('Mobo', 'Mobo'),
-        ('Memory', 'Memory'),
-        ('Case', 'Case'),
-        ('PSU', 'PSU'),
-        ('CaseAcc', 'CaseAcc'),
-        ('Headset', 'Headset'),
-        ('Keyboard', 'Keyboard'),
-        ('Monitor', 'Monitor'),
-        ('Mouse', 'Mouse'),
-    )
-    name = models.CharField(max_length=200, null=True, choices=CATEGORY)
-
-    def __str__(self):
-        return self.name
-
-
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
     price = models.FloatField()
     brand = models.CharField(max_length=200, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = models.ImageField(null=True)
 
     def __str__(self):
@@ -79,6 +58,11 @@ class PSU(Product):
     capacity = models.FloatField()
 
 
+class CPUCooler(Product):
+    coolertype = models.CharField(max_length=200, null=True)
+    rpm = models.FloatField()
+
+
 class Monitor(Product):
     resolution = models.CharField(max_length=200, null=True)
     refreshrate = models.FloatField()
@@ -96,6 +80,11 @@ class Keyboard(Product):
 
 class Headset(Product):
     wireless = models.BooleanField()
+
+
+class Case(Product):
+    casetype = models.CharField(max_length=200, null=True)
+    color = models.CharField(max_length=200, null=True)
 
 
 class CaseAcc(Product):

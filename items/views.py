@@ -182,8 +182,8 @@ def gpu(request):
         items = []
         order = {'get_cart_total': 0, 'get_quantity_total': 0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category=2)
-    context = {'products': products, 'total': total}
+    gpus = GPU.objects.filter()
+    context = {'gpus': gpus, 'total': total}
     return render(request, 'store/products/components/gpu.html', context)
 
 
@@ -198,9 +198,9 @@ def mobo(request):
         items = []
         order = {'get_cart_total': 0, 'get_quantity_total': 0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category=3)
+    mobos = Motherboard.objects.filter()
 
-    context = {'products': products, 'total': total}
+    context = {'mobos': mobos, 'total': total}
     return render(request, 'store/products/components/mobo.html', context)
 
 
@@ -215,8 +215,8 @@ def memory(request):
         items = []
         order = {'get_cart_total': 0, 'get_quantity_total': 0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category=4)
-    context = {'products': products, 'total': total}
+    memories = Memory.objects.filter()
+    context = {'memories': memories, 'total': total}
     return render(request, 'store/products/components/memory.html', context)
 
 
@@ -231,9 +231,9 @@ def case(request):
         items = []
         order = {'get_cart_total': 0, 'get_quantity_total': 0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category=5)
-    context = {'products': products, 'total': total}
-    return render(request, 'store/products/components/gpu.html', context)
+    cases = Case.objects.filter()
+    context = {'cases': cases, 'total': total}
+    return render(request, 'store/products/components/case.html', context)
 
 
 def psu(request):
@@ -247,9 +247,41 @@ def psu(request):
         items = []
         order = {'get_cart_total': 0, 'get_quantity_total': 0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category=6)
-    context = {'products': products, 'total': total}
-    return render(request, 'store/products/components/gpu.html', context)
+    psus = PSU.objects.filter()
+    context = {'psus': psus, 'total': total}
+    return render(request, 'store/products/components/psu.html', context)
+
+
+def cooler(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(
+            customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        total = order.get_quantity_total
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_quantity_total': 0}
+        total = order['get_quantity_total']
+    coolers = CPUCooler.objects.filter()
+    context = {'coolers': coolers, 'total': total}
+    return render(request, 'store/products/components/cooler.html', context)
+
+
+def storage(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(
+            customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        total = order.get_quantity_total
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_quantity_total': 0}
+        total = order['get_quantity_total']
+    storages = Storage.objects.filter()
+    context = {'storages': storages, 'total': total}
+    return render(request, 'store/products/components/storage.html', context)
 
 
 def caseacc(request):
@@ -263,9 +295,9 @@ def caseacc(request):
         items = []
         order = {'get_cart_total': 0, 'get_quantity_total': 0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category=7)
-    context = {'products': products, 'total': total}
-    return render(request, 'store/products/components/gpu.html', context)
+    caseaccs = CaseAcc.objects.filter()
+    context = {'caseaccs': caseaccs, 'total': total}
+    return render(request, 'store/products/peripherals/caseacc.html', context)
 
 
 def headset(request):
@@ -279,9 +311,9 @@ def headset(request):
         items = []
         order = {'get_cart_total': 0, 'get_quantity_total': 0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category=8)
-    context = {'products': products, 'total': total}
-    return render(request, 'store/products/components/gpu.html', context)
+    headsets = Headset.objects.filter()
+    context = {'headsets': headsets, 'total': total}
+    return render(request, 'store/products/peripherals/headset.html', context)
 
 
 def keyboard(request):
@@ -295,9 +327,9 @@ def keyboard(request):
         items = []
         order = {'get_cart_total': 0, 'get_quantity_total': 0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category=9)
-    context = {'products': products, 'total': total}
-    return render(request, 'store/products/components/gpu.html', context)
+    keyboards = Keyboard.objects.filter()
+    context = {'keyboards': keyboards, 'total': total}
+    return render(request, 'store/products/peripherals/keyboard.html', context)
 
 
 def monitor(request):
@@ -311,9 +343,9 @@ def monitor(request):
         items = []
         order = {'get_cart_total': 0, 'get_quantity_total': 0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category=10)
-    context = {'products': products, 'total': total}
-    return render(request, 'store/products/components/gpu.html', context)
+    monitors = Monitor.objects.filter()
+    context = {'monitors': monitors, 'total': total}
+    return render(request, 'store/products/peripherals/monitor.html', context)
 
 
 def mouse(request):
@@ -327,9 +359,9 @@ def mouse(request):
         items = []
         order = {'get_cart_total': 0, 'get_quantity_total': 0}
         total = order['get_quantity_total']
-    products = Product.objects.filter(category=11)
-    context = {'products': products, 'total': total}
-    return render(request, 'store/products/components/gpu.html', context)
+    mice = Mouse.objects.filter()
+    context = {'mice': mice, 'total': total}
+    return render(request, 'store/products/peripherals/mouse.html', context)
 
 
 def updateItem(request):

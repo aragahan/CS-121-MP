@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="bg-light p-5 rounded-lg m-3 text-center">
-    <h1 class="jumbotron-heading">Monitor</h1>
+    <h1 class="jumbotron-heading">Storage</h1>
     <p class="lead text-muted">(Insert description)</p>
 </div>
 </div>
@@ -27,11 +27,11 @@
                         All
                     </label>
                 </div>
-                {% for monitor in monitors %}
+                {% for storage in storages %}
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="allbrands" id={{monitor.brand}} value="option1">
-                    <label class="form-check-label" for={{monitor.brand}}>
-                        {{monitor.brand}}
+                    <input class="form-check-input" type="radio" name="allbrands" id={{storage.brand}} value="option1">
+                    <label class="form-check-label" for={{storage.brand}}>
+                        {{storage.brand}}
                     </label>
                 </div>
                 {% endfor %}
@@ -50,12 +50,12 @@
                 </thead>
                 <tbody>
                     <!--Components-->
-                    {% for monitor in monitors %}
+                    {% for storage in storages %}
                     <tr>
-                        <td><img class="thumbnail" src="{{monitor.image.url}}" height="50"><a
-                                href="{% url 'product' monitor.id %}" class="link-secondary"> {{monitor.name}}</a></td>
-                        <td>PHP {{monitor.price|floatformat:2}}</td>
-                        <td><button data-product={{monitor.id}} data-action="add"
+                        <td><img class="thumbnail" src="{{storage.image.url}}" height="50"><a
+                                href="{% url 'product' storage.id %}" class="link-secondary"> {{storage.name}}</a></td>
+                        <td>PHP {{storage.price|floatformat:2}}</td>
+                        <td><button data-product={{storage.id}} data-action="add"
                                 class="btn btn-success btn-sm ml-3 update-cart">Add-to-Cart</button></td>
                     </tr>
                     {% endfor %}
