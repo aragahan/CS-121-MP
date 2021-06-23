@@ -2,54 +2,80 @@
 {% load static %}
 {% block content %}
 
-<div class="col-md-5 container-fluid bg-default">
+<div class="col-md-7 container-fluid bg-default">
 
-    <h4>Payment Summary</h4>
-    <div class="table-responsive">
-        <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Order</th>
-                <th scope="col">Shipping Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in items %}
-            <tr>
-                <th scope="row" class="border-0">
-                    {{item.product.name}}
-                    <br />
-                    {{item.quantity}}
-                    <br />
-                    PHP {{item.get_total|floatformat:2}}
-                    
-                </th>
-            </tr>
-            {% endfor %}
-            <tr>
-                <td class="border-0">>
-                    {{ address.address }}
-                    <br />
-                    {{address.city}}
-                    <br />
-                    {{address.country}}
-                    <br />
-                    {{address.zip}}
-                    <br />
-                </td>
-            </tr>
-                
-            
-        </tbody>
+    <h2 class="text-center"style="padding-bottom: 30px;">Payment Summary</h2>
+    <div class="row">
+        <div class="col"  style="padding-bottom: 50px;">
+
+            <h4>Order</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="border-0 bg-light">
+                                <div class="p-2 px-3 text-uppercase">Product</div>
+                            </th>
+                            <th scope="col" class="border-0 bg-light">
+                                <div class="py-2 text-uppercase">Price</div>
+                            </th>
+                            <th scope="col" class="border-0 bg-light">
+                                <div class="py-2 text-uppercase">Quantity</div>
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <th scope="row" class="border-0">
+                                <div class="p-2">
+                                    <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-1_zrifhn.jpg"
+                                        alt="" width="70" class="img-fluid rounded shadow-sm">
+                                    <div class="ml-3 d-inline-block align-middle">
+                                        <h5 class="mb-0"> <p
+                                                class="text-dark d-inline-block align-middle">{{item.product.name}}</p>
+                                    </div>
+                                </div>
+                            </th>
+                            <td class="border-0 align-middle"><strong>PHP {{item.get_total|floatformat:2}}</strong></td>
+                            <td class="border-0 align-middle text-center"><strong> {{item.quantity}}</strong> </td>
+                                
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="p-4 bg-light" style="padding-bottom: 50px;">
+                    <ul class="list-unstyled mb-4">
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong
+                                class="text-dark">Total</strong>
+                            <h5 class="text-dark">PHP {{order.get_cart_total|floatformat:2}}</h5>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    
+        <div class="col">
+            <h4>Shipping</h4>
+            <div class="row py-3 p-2 bg-white rounded shadow-sm">
+                <strong class="text-dark">Address: {{address.address}}</strong>
+                    <strong class="text-dark">City: {{address.city}}</strong>   
+                        <strong class="text-dark">Zip: {{address.zip}}</strong>
+                        <strong class="text-dark">Country: {{address.country}}</strong>
+            </div> 
+        </div>
+
         
+
     </div>
     
     
-    </table>
-        
 
 
-    <div class="container-fluid" style="padding-top:20px; padding-bottom: 50px;">
+    <div class="container-fluid justify-content-between text-center" style="padding-top:20px; padding-bottom: 50px;">
         <a href="{% url 'cart' %}">
             <button class="col-md-3 btn btn-primary bt-lg btn-block" type="submit">Edit Cart</button>
         </a>

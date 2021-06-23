@@ -9,35 +9,7 @@
 
 <div class="container-fluid text-justify">
     <div class="row">
-        <!--Sidebar-->
-        <div class="col-12 col-sm-3 sidenav" id="sidenav">
-            <section class="filter">
-                <div class="sbheader">
-                    <h2>Filter</h2>
-                    <hr class="rounded">
-                </div>
-            </section>
-
-            <div class="Brand">
-                <h4 class="title">Brand</h4>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="allbrands" id="allbrands" value="option1"
-                        checked>
-                    <label class="form-check-label" for="allbrands">
-                        All
-                    </label>
-                </div>
-                {% for headset in headsets %}
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="allbrands" id={{headset.brand}} value="option1">
-                    <label class="form-check-label" for={{headset.brand}}>
-                        {{headset.brand}}
-                    </label>
-                </div>
-                {% endfor %}
-            </div>
-
-        </div>
+        
         <div class="col">
             <!--Product Table-->
             <table class="table">

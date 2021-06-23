@@ -50,7 +50,7 @@ def search(request):
     else:
         return render(request, "store/search.html", {})
 
-
+@login_required(login_url='login')
 def cart(request):
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -123,12 +123,10 @@ def purchase_summary(request):
     order, created = Order.objects.get_or_create(
         customer=customer, complete=False)
     items = order.orderitem_set.all()
-    total = order.get_quantity_total
+    
     address = ShippingAddress.objects.get(customer=customer)
-    order = {'get_cart_total': 0, 'get_quantity_total': 0}
-    total = order['get_quantity_total']
 
-    context = {"items": items, 'address': address}
+    context = {"items": items, 'address': address, 'order':order}
         
     return render(request, 'store/purchase_summary.html', context)
 
