@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
+
+
 # Create your models here.
 
 
@@ -111,14 +113,20 @@ class Order(models.Model):
     complete = models.BooleanField(default=False, null=True, blank=False)
     transaction_id = models.CharField(max_length=200, null=True)
 
+    @property
     def get_cart_total(self):
         orderitems = self.orderitem_set.all()
         total = sum([item.get_total for item in orderitems])
         return total
-
+    @property
+    def shipping(self):
+        shipping = False
+        orderitems = self.orderitem_set.all()
+        return shipping
+    @property
     def get_quantity_total(self):
         orderquant = self.orderitem_set.all()
-        quantots = sum(items.product.id for items in orderquant)
+        quantots = sum(items.quantity for items in orderquant)
         return quantots
 
 
@@ -143,6 +151,6 @@ class ShippingAddress(models.Model):
         Order, on_delete=models.SET_NULL, blank=True, null=True)
     address = models.CharField(max_length=200, null=True)
     city = models.CharField(max_length=200, null=True)
-    state = models.CharField(max_length=200, null=True)
+    country = models.CharField(max_length=200, null=True)
     zip = models.CharField(max_length=200, null=True)
     date_added = models.DateTimeField(auto_now_add=True)

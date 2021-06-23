@@ -1,59 +1,64 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-<div class="col-md-4 container-fluid
-     bg-default">
+
+<div class="col-md-5 container-fluid bg-default">
 
     <h4>Payment Summary</h4>
+    <div class="table-responsive">
+        <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Shipping Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <th scope="row" class="border-0">
+                    {{item.product.name}}
+                    <br />
+                    {{item.quantity}}
+                    <br />
+                    PHP {{item.get_total|floatformat:2}}
+                    
+                </th>
+            
+            {% endfor %}
+            
+                <td class="border-0 align-middle">>
+                    {{ address.address }}
+                    <br />
+                    {{address.city}}
+                    <br />
+                    {{address.country}}
+                    <br />
+                    {{address.zip}}
+                    <br />
+                </td>
+            </tr>
+        </tbody>
+        
+    </div>
+    
+    
+    </table>
+        
 
-    <body>
-        <th>User</th>
-        <th>Order</th>
-        <th>Shipping Details</th>
-        <tr>
-            <td>{%firstname%}
-                <br />
-                {%lastname%}
-            </td>
-            <td>
-                {% for item in items %}
-                {{item.product.name}}
-                <br />
-                {{item.quantity}}
-                <br />
-                {% endfor %}
-            </td>
-            <td>
-                {%email%}
-                <br />
-                {%address1%}
-                <br />
-                {%address2%}
-                <br />
-                {%city%}
-                <br />
-                {%country%}
-                <br />
-                {%postcode%}
-                <br />
-                {%payment-method%}
-                <br />
-            </td>
-        </tr>
-    </body>
 
-
-    <hr class="mb-4">
-
-    <a href="{% url 'cart' %}">
-        <button class="btn btn-primary bt-lg btn-block" type="submit">Edit Cart</button>
-    </a>
-    <a href="{% url 'checkout' %}">
-        <button class="btn btn-primary bt-lg btn-block" type="submit">Edit Shipping Details</button>
-    </a>
-    <a href="{% url 'payment_confirmation' %}">
-        <button class="btn btn-primary bt-lg btn-block" type="submit">Next</button>
-    </a>
+    <div class="container-fluid" style="padding-top:20px; padding-bottom: 50px;">
+        <a href="{% url 'cart' %}">
+            <button class="col-md-3 btn btn-primary bt-lg btn-block" type="submit">Edit Cart</button>
+        </a>
+        <a href="{% url 'checkout' %}">
+            <button class="col-md-4 btn btn-primary bt-lg btn-block" type="submit">Edit Shipping Details</button>
+        </a>
+        <a href="{% url 'payment_confirmation' %}">
+            <button class="col-md-3 btn btn-primary bt-lg btn-block" type="submit">Next</button>
+        </a>
+    </div>
+    
 </div>
 
 {% endblock content %}

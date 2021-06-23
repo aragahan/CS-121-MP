@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.core.mail import send_mail
 from .models import *
-from .forms import CreateUserForm
+from .forms import AddressForm, CreateUserForm
 from .decorators import unauthenticated_user
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -81,25 +81,28 @@ def about(request):
     return render(request, 'store/about.html', context)
 
 @csrf_exempt
-def checkout(request):
+def checkout(request,):
     if request.user.is_authenticated:
-        firstname = request.POST.get('firstname')
-        lastname = request.POST.get('lastname')
-        email = request.POST.get('email')
-        address1 = request.POST.get('address1')
-        address2 = request.POST.get('address2')
-        country = request.POST.get('country')
-        city = request.POST.get('city')
-        postcode = request.POST.get('postcode')
-
-        if (forms.selected("credit")): #only for credit card option
-            cardname = request.POST.get('card-name')
-            cardno = request.POST.get('card-no')
-            expiry = request.POST.get('expiry')
-            secno = request.POST.get('sec-no')
+        customer = request.user.customer
+        instance, created = ShippingAddress.objects.get_or_create(customer=customer)
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(
+            customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        total = order.get_quantity_total
+        form = AddressForm(instance=instance)
+        if request.method == 'POST':
+            form = AddressForm(request.POST, instance=instance)
+            if form.is_valid():
+                form.save()
+                
+                return redirect('delivery_process')
     else:
-        return redirect('login')
-    context = {}
+        items = []
+        order = {'get_cart_total': 0, 'get_quantity_total': 0}
+        total = order['get_quantity_total']
+    
+    context = {'form': form, 'items': items, 'order': order}
     return render(request, 'store/checkout.html', context)
 
 def delivery_process(request):
@@ -115,24 +118,18 @@ def delivery_process(request):
     return render(request, 'store/delivery_process.html', context)
 
 def purchase_summary(request):
-    if request.user.is_authenticated:
-        firstname = request.POST.get('firstname')
-        lastname = request.POST.get('lastname')
-        email = request.POST.get('email')
-        address1 = request.POST.get('address1')
-        address2 = request.POST.get('address2')
-        country = request.POST.get('country')
-        city = request.POST.get('city')
-        postcode = request.POST.get('postcode')
 
-        if (forms.selected("credit")): #only for credit card option
-            cardname = request.POST.get('card-name')
-            cardno = request.POST.get('card-no')
-            expiry = request.POST.get('expiry')
-            secno = request.POST.get('sec-no')
-    else:
-        return redirect('login')
-    context = {}
+    customer = request.user.customer
+    order, created = Order.objects.get_or_create(
+        customer=customer, complete=False)
+    items = order.orderitem_set.all()
+    total = order.get_quantity_total
+    address = ShippingAddress.objects.get(customer=customer)
+    order = {'get_cart_total': 0, 'get_quantity_total': 0}
+    total = order['get_quantity_total']
+
+    context = {"items": items, 'address': address}
+        
     return render(request, 'store/purchase_summary.html', context)
 
 def payment_confirmation(request):

@@ -78,7 +78,7 @@
                         <ul class="list-unstyled mb-4">
                             <li class="d-flex justify-content-between py-3 border-bottom"><strong
                                     class="text-dark">Total</strong>
-                                <h5 class="text-dark">{{order.get_cart_total}}</h5>
+                                <h5 class="text-dark">PHP {{order.get_cart_total|floatformat:2}}</h5>
                             </li>
                         </ul><a href="{% url 'checkout' %}" class="btn btn-success">Proceed to
                             checkout</a>

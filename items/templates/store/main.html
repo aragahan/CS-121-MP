@@ -15,7 +15,7 @@
         <!--Font CSS-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Play">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+        
         <script type= "text/javascript">
             var user = '{{request.user}}'
 
@@ -33,7 +33,7 @@
                 }
                 return cookieValue
             }
-            var csrftoken = getTo('csrftoken');
+            var csrftoken = Cookie.get('csrftoken');
         </script>
     </head>
 
