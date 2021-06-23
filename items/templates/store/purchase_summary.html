@@ -24,10 +24,10 @@
                     PHP {{item.get_total|floatformat:2}}
                     
                 </th>
-            
+            </tr>
             {% endfor %}
-            
-                <td class="border-0 align-middle">>
+            <tr>
+                <td class="border-0">>
                     {{ address.address }}
                     <br />
                     {{address.city}}
@@ -38,6 +38,8 @@
                     <br />
                 </td>
             </tr>
+                
+            
         </tbody>
         
     </div>
